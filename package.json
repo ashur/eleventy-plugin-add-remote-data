@@ -2,7 +2,7 @@
   "name": "@aaashur/eleventy-plugin-add-remote-data",
   "version": "1.0.0",
   "description": "",
-  "main": ".eleventy.js",
+  "main": "eleventy.plugin.js",
   "scripts": {
     "test": "node --test"
   },
