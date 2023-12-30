@@ -7,7 +7,11 @@ module.exports.fetchRemoteData = async( remoteUrl ) =>
 	try
 	{
 		const url = new URL( remoteUrl );
-		const response = await fetch( url );
+		const response = await fetch( url, {
+			headers: {
+				Accept: "application/json",
+			},
+		} );
 
 		return await response.json();
 	}
