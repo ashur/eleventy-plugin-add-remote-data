@@ -1,0 +1,35 @@
+{
+  "name": "@aaashur/eleventy-plugin-add-remote-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashur/eleventy-plugin-add-remote-data.git"
+  },
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "plugin"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashur/eleventy-plugin-add-remote-data/issues"
+  },
+  "homepage": "https://github.com/ashur/eleventy-plugin-add-remote-data#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@aaashur/eslint-config": "^1.0.0-beta.1",
+    "chai": "^4.3.10",
+    "eslint": "^8.56.0",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "mocha": "^10.2.0"
+  },
+  "eslintIgnore": [
+    "!.*"
+  ]
+}
