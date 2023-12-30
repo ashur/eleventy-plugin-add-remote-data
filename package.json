@@ -31,5 +31,8 @@
   },
   "eslintIgnore": [
     "!.*"
-  ]
+  ],
+  "dependencies": {
+    "@11ty/eleventy-fetch": "^4.0.0"
+  }
 }
