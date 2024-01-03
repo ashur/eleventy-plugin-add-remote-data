@@ -106,10 +106,12 @@ eleventyConfig.addPlugin(addRemoteData, {
         coinToss: {
             options: {
                 duration: "0d",
+
                 // Because we haven't defined `directory`, this endpoint will
                 // inherit the "different-cache-directory" value from default
                 // options defined below
             },
+
             url: "https://coin-toss.netlify.app/api/v1.json",
         },
 
@@ -124,7 +126,7 @@ eleventyConfig.addPlugin(addRemoteData, {
 });
 ```
 
-Options for individual endpoints will be merged default options, allowing you to fine-tune just the properties you need.
+Options for individual endpoints will be merged with default options, allowing you to fine-tune just the properties you need.
 
 ### Type
 
