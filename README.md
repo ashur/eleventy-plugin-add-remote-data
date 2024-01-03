@@ -17,12 +17,12 @@ Next, include the plugin in your [Eleventy config file](https://www.11ty.dev/doc
 const addRemoteData = require("@aaashur/eleventy-plugin-add-remote-data");
 
 module.exports = (eleventyConfig) => {
-	eleventyConfig.addPlugin(addRemoteData, {
-		data: {
-			// See "Usage" below
-			exampleData: "https://example.com/data.json",
-		},
-	});
+    eleventyConfig.addPlugin(addRemoteData, {
+        data: {
+            // See "Usage" below
+            exampleData: "https://example.com/data.json",
+        },
+    });
 };
 ```
 
@@ -34,14 +34,13 @@ For example, the following configuration:
 
 ```javascript
 eleventyConfig.addPlugin(addRemoteData, {
-	data: {
-		coinToss: "https://coin-toss.netlify.app/api/v1.json",
-		robots: "https://api.ashur.cab/robots/v2.json"
-	},
+    data: {
+        robots: "https://api.ashur.cab/robots/v2.json"
+    },
 });
 ```
 
-would create two new global data variables — `coinToss` and `robots` — which you might use in a template like this:
+would create a global data variables named `robots` that you might use in a template like this:
 
 ```njk
 ---
@@ -54,25 +53,36 @@ Disallow: /
 {% endfor -%}
 ```
 
+Adding a second data property `coinToss` would create a global data variable named `coinToss`:
+
+```javascript
+    data: {
+        coinToss: "https://coin-toss.netlify.app/api/v1.json",
+        robots: "https://api.ashur.cab/robots/v2.json"
+    },
+```
+
+etc.
+
 ### Notes
 
 `addRemoteData` requires a valid JSON response — if it encounters an invalid payload, an exception will be thrown.
 
 ## Configuration
 
-This plugin uses [`@11ty/eleventy-fetch`](https://www.npmjs.com/package/@11ty/eleventy-fetch) under the hood, and accepts all the same [cache options](https://www.11ty.dev/docs/plugins/fetch/#options).
+This plugin uses [`@11ty/eleventy-fetch`](https://www.npmjs.com/package/@11ty/eleventy-fetch) under the hood, and accepts all the same [cache options](https://www.11ty.dev/docs/plugins/fetch/#change-the-cache-duration).
 
 By default, `eleventy-fetch` caches results for 1 day and stores them in a directory called `.cache`. To use a different duration or location, add a `cache` property to the plugin options object:
 
 ```javascript
 eleventyConfig.addPlugin(addRemoteData, {
-	cache: {
-		directory: "different-cache-directory",
-		duration: "30d",
-	},
-	data: {
-		// ...
-	},
+    cache: {
+        directory: "different-cache-directory",
+        duration: "30d",
+    },
+    data: {
+        // ...
+    },
 });
 ```
 
