@@ -103,17 +103,19 @@ If you're working with global data variables that have different requirements, y
 ```javascript
 eleventyConfig.addPlugin(addRemoteData, {
     data: {
-        coinToss: "https://coin-toss.netlify.app/api/v1.json",
-        robots: {
-            url: "https://api.ashur.cab/robots/v2.json"
+        coinToss: {
             options: {
                 duration: "0d",
                 // Because we haven't defined `directory`, this endpoint will
                 // inherit the "different-cache-directory" value from default
                 // options defined below
             },
+            url: "https://coin-toss.netlify.app/api/v1.json",
         },
+
+        robots: "https://api.ashur.cab/robots/v2.json",
     },
+
     options: {
     	// Default options
         directory: "different-cache-directory",
