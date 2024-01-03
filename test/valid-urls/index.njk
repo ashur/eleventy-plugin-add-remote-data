@@ -1,0 +1,7 @@
+{{ deckOfCardsOne | dump(4) | safe }}
+
+{{ deckOfCardsTwo | dump(4) | safe }}
+
+NOTE — This inherits default cache duration of "1d" and will not
+auto-update until the cache is cleared:
+{{ coinToss | dump(4) | safe }}
