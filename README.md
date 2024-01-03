@@ -86,7 +86,7 @@ eleventyConfig.addPlugin(addRemoteData, {
 });
 ```
 
-If you haven't worked with `eleventy-fetch` before, please be sure to read (and heed) this warning:
+If you haven't worked with `eleventy-fetch` before, please be sure to read (and heed) [this warning](https://www.11ty.dev/docs/plugins/fetch/#installation):
 
 > **Important Security and Privacy Notice**
 >
