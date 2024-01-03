@@ -90,3 +90,16 @@ If you haven't worked with `eleventy-fetch` before, please be sure to read (and 
 
 > **Important Security and Privacy Notice**
 > This plugin caches complete network responses. Unless you’re willing to perform a full review of everything this plugin caches to disk for privacy and security exposure, it is strongly recommended that you add the .cache folder to your .gitignore file so that network responses aren’t checked in to your git repository.
+
+## FAQ
+
+### Why choose this over using `eleventy-fetch` directly?
+
+If you find yourself writing global data files that are largely identical, fetching remote JSON data and exporting the results directly, this plugin can help eliminate a lot of the friction in getting set up.
+
+If, however, your needs are more complex:
+
+- the remote data must be processed or sanitized
+- the response isn't formatted as JSON
+
+using `eleventy-fetch` directly is definitely the right choice!
