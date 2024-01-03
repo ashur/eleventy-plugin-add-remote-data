@@ -39,7 +39,7 @@ eleventyConfig.addPlugin(addRemoteData, {
 });
 ```
 
-would create a global data variables named `robots` that you might use in a template like this:
+would create a global data variable named `robots` that you might use in a template like this:
 
 ```njk
 ---
