@@ -20,7 +20,6 @@ module.exports = (eleventyConfig) => {
     eleventyConfig.addPlugin(addRemoteData, {
         data: {
             // See "Usage" below
-            exampleData: "https://example.com/data.json",
         },
     });
 };
