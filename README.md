@@ -63,27 +63,101 @@ Adding a second data property `coinToss` would create a global data variable nam
 
 etc.
 
-### Notes
-
-`addRemoteData` requires a valid JSON response — if it encounters an invalid payload, an exception will be thrown.
-
 ## Configuration
 
-This plugin uses [`@11ty/eleventy-fetch`](https://www.npmjs.com/package/@11ty/eleventy-fetch) under the hood, and accepts all the same [cache options](https://www.11ty.dev/docs/plugins/fetch/#change-the-cache-duration).
+This plugin uses [`@11ty/eleventy-fetch`](https://www.npmjs.com/package/@11ty/eleventy-fetch) under the hood, and accepts all the same [options](https://www.11ty.dev/docs/plugins/fetch/#options).
 
-By default, `eleventy-fetch` caches results for 1 day and stores them in a directory called `.cache`. To use a different duration or location, add a `cache` property to the plugin options object:
+In addition to the top-level `data` property, you can set an `options` property to adjust default behaviors.
 
 ```javascript
 eleventyConfig.addPlugin(addRemoteData, {
-    cache: {
-        directory: "different-cache-directory",
-        duration: "30d",
-    },
     data: {
+        // ...
+    },
+    options: {
         // ...
     },
 });
 ```
+
+### Cache
+
+By default, `eleventy-fetch` caches results for 1 day and stores them in a directory called `.cache`.
+
+To use a different directory or duration, use the `options` object to set one or both for all endpoints:
+
+```javascript
+eleventyConfig.addPlugin(addRemoteData, {
+    data: {
+        // ...
+    },
+    options: {
+        directory: "different-cache-directory",
+        duration: "30d",
+    },
+});
+```
+
+If you're working with global data variables that have different requirements, you can define `options` on an individual basis:
+
+```javascript
+eleventyConfig.addPlugin(addRemoteData, {
+    data: {
+        coinToss: "https://coin-toss.netlify.app/api/v1.json",
+        robots: {
+            url: "https://api.ashur.cab/robots/v2.json"
+            options: {
+                duration: "0d",
+                // Because we haven't defined `directory`, this endpoint will
+                // inherit the "different-cache-directory" value from default
+                // options defined below
+            },
+        },
+    },
+    options: {
+    	// Default options
+        directory: "different-cache-directory",
+        duration: "30d",
+    },
+});
+```
+
+Options for individual endpoints will be merged default options, allowing you to fine-tune just the properties you need.
+
+### Type
+
+For convenience, this plugin assumes a valid JSON response by default — if it encounters an invalid payload, an exception will be thrown.
+
+To switch to [another type supported by `eleventy-fetch`](https://www.11ty.dev/docs/plugins/fetch/#type), you can set `type` on both the top-level `options` object:
+
+```javascript
+eleventyConfig.addPlugin(addRemoteData, {
+    data: {
+        // ...
+    },
+    options: {
+        type: "text",
+    },
+}
+```
+
+and on a per-endpoint basis:
+
+```javascript
+eleventyConfig.addPlugin(addRemoteData, {
+    data: {
+        coinToss: {
+            type: "json",
+            url: "https://coin-toss.netlify.app/api/v1.json",
+        },
+    },
+    options: {
+        type: "text",
+    },
+}
+```
+
+### Security & Privacy
 
 If you haven't worked with `eleventy-fetch` before, please be sure to read (and heed) [this warning](https://www.11ty.dev/docs/plugins/fetch/#installation):
 
@@ -97,9 +171,4 @@ If you haven't worked with `eleventy-fetch` before, please be sure to read (and 
 
 If you find yourself writing global data files that are largely identical, fetching remote JSON data and exporting the results directly, this plugin can help eliminate a lot of the friction in getting set up.
 
-If, however, your needs are more complex:
-
-- the remote data must be processed or sanitized
-- the response isn't formatted as JSON
-
-using `eleventy-fetch` directly is definitely the right choice!
+If, however, your needs are more complex — ex., the remote data must be processed or sanitized, or you’re fetching raw image data that needs to be optimized — using `eleventy-fetch` directly is definitely the right choice!

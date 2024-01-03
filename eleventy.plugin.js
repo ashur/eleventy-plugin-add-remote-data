@@ -10,11 +10,11 @@ const { fetchRemoteData } = require( "./src/fetchRemoteData" );
 module.exports = ( eleventyConfig, options ) =>
 {
 	// See https://www.11ty.dev/docs/plugins/fetch/#options
-	const cacheOptions = options.cache || {};
+	const defaultOptions = options.options || {};
 	const data = options.data || {};
 
-	Object.entries( data ).forEach( ( [key, url] ) =>
+	Object.entries( data ).forEach( ( [key, value] ) =>
 	{
-		eleventyConfig.addGlobalData( key, async () => await fetchRemoteData( url, cacheOptions ) );
+		eleventyConfig.addGlobalData( key, async () => await fetchRemoteData( value, defaultOptions ) );
 	} );
 };
